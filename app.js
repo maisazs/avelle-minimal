@@ -1,16 +1,19 @@
-/* COMO CADASTRAR UMA PEÇA:
-   Copie um bloco dentro de produtos, altere nome/categoria/imagem/link.
-   Foto: utilize caminho local (ex. "assets/vestido-rosa.jpg") ou URL HTTPS.
-   Link: cole seu link de afiliada da Shopee. Sem link, aparecerá "Em breve".
-   As peças abaixo são apenas exemplos e devem ser substituídas antes da divulgação.
+/* CADASTRO DOS VESTIDOS:
+   id: código de identificação que você define manualmente (ex.: 'AV001').
+   preco: preço que será exibido (ex.: 'R$ 89,90'). Deixe vazio para ocultar.
+   imagem: caminho local ou URL da foto.
+   link: URL de afiliada da Shopee (imagem, nome e botão serão clicáveis).
+   Os IDs e preços abaixo estão vazios para você preencher com os dados corretos.
 */
 const produtos = [
-  {nome:'Vestido longo elegante — exemplo',categoria:'Vestidos',imagem:'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''},
-  {nome:'Vestido feminino casual — exemplo',categoria:'Vestidos',imagem:'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''},
-  {nome:'Conjunto sofisticado — exemplo',categoria:'Conjuntos',imagem:'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''},
-  {nome:'Look casual versátil — exemplo',categoria:'Casual',imagem:'https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''},
-  {nome:'Conjunto feminino moderno — exemplo',categoria:'Conjuntos',imagem:'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''},
-  {nome:'Peça essencial feminina — exemplo',categoria:'Casual',imagem:'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=82',selo:'EXEMPLO',link:''}
+  {id:'BYV-WVM-GKH',preco:'R$274,50',nome:'Vestido Longo Tomara Que Caia com Fenda',categoria:'Vestidos',imagem:'/assets/vestidos/vestido-vermelho-elegante-cetim.jpeg',link:'https://s.shopee.com.br/3B8Bf8uCDf'},
+  {id:'BFZ-SEW-MDG',preco:'R$280,60',nome:'Vestido Longo com Alças com Fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-verde-elegante-cetim-tomara-que-caia.jpeg',link:'https://s.shopee.com.br/4fwzS6EMne'},
+  {id:'BTG-BTZ-TZM',preco:'R$166,54',nome:'Vestido de cetim de um ombro com fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-um-ombro-roxo.jpeg',link:'https://s.shopee.com.br/70KuEnQFkN'},
+  {id:'BGM-QUC-DAS',preco:'R$95,00',nome:'Vestido Longo Forrado Estampa Florida',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-estampado.jpeg',link:'https://s.shopee.com.br/60SN345Il6'},
+  {id:'AFE-LUM-QZA',preco:'R$76,44',nome:'Vestido de cetim sem mangas',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-cetim.jpeg',link:'https://s.shopee.com.br/50ZprTTNZb'},
+  {id:'AWD-JEB-REJ',preco:'R$265,50',nome:'Vestido Longo Decote Drapeado Fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-marrom-elegante-cetim.jpeg',link:'https://s.shopee.com.br/6VOdeT4LDR'},
+  {id:'BLS-KQA-ZPS',preco:'R$190,15',nome:'Vestido estampado manga lanterna',categoria:'Vestidos',imagem:'assets/vestidos/vestido-manga-bufante-estampado.jpeg',link:'https://s.shopee.com.br/60SN3iO8Tb'},
+  {id:'AWD-JEB-QBS',preco:'R$157,74',nome:'Vestido longo em malha fria + Faixa',categoria:'Vestidos',imagem:'assets/vestidos/vestido-lenco-pescoco-serenity.jpeg',link:'https://s.shopee.com.br/905ydPd8cs'},
 ];
 const grid=document.querySelector('#products');
 const filters=document.querySelector('#filters');
@@ -23,15 +26,32 @@ const safeUrl=link=>{try{const u=new URL(link);return u.protocol==='https:'||u.p
 const element=(tag,cls,content)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(content!==undefined)node.textContent=content;return node};
 function createCard(p){
   const card=element('article','product');
-  const photo=element('div','photo');
+  const active=safeUrl(p.link);
+  const photo=element(active?'a':'div','photo'+(active?' photo-link':''));
+  if(active){photo.href=p.link;photo.target='_blank';photo.rel='sponsored nofollow noopener noreferrer';photo.setAttribute('aria-label','Ver '+p.nome+' na Shopee')}
   const img=element('img');img.src=p.imagem||'assets/avelle-logo.webp';img.alt=p.nome;img.loading='lazy';img.decoding='async';img.onerror=()=>{img.onerror=null;img.src='assets/avelle-logo.webp'};photo.append(img);
   if(p.selo)photo.append(element('span','tag',p.selo));
-  const meta=element('div','product-meta');meta.append(element('div','category',p.categoria||'Moda feminina'),element('h2','product-name',p.nome));
-  const active=safeUrl(p.link);const action=element(active?'a':'span','product-action'+(active?'':' disabled'));
+  const meta=element('div','product-meta');
+  meta.append(element('div','category',p.categoria||'Moda feminina'));
+  const heading=element('h2','product-name');
+  const name=element(active?'a':'span','product-name-link',p.nome);
+  if(active){name.href=p.link;name.target='_blank';name.rel='sponsored nofollow noopener noreferrer'}
+  heading.append(name);meta.append(heading);
+  if(String(p.id||'').trim())meta.append(element('div','product-id','ID: '+String(p.id).trim()));
+  meta.append(element('div','product-price',String(p.preco||'').trim()||'Preço na Shopee'));
+  const action=element(active?'a':'span','product-action'+(active?'':' disabled'));
   action.append(document.createTextNode(active?'VER NA SHOPEE':'EM BREVE'),element('span','',active?'↗':'—'));
   if(active){action.href=p.link;action.target='_blank';action.rel='sponsored nofollow noopener noreferrer';action.setAttribute('aria-label','Ver '+p.nome+' na Shopee')}
   meta.append(action);card.append(photo,meta);return card;
 }
 function renderFilters(){const categorias=['Todas',...new Set(produtos.map(p=>p.categoria).filter(Boolean))];filters.replaceChildren(...categorias.map(cat=>{const btn=element('button','filter'+(cat===categoriaAtual?' active':''),cat);btn.type='button';btn.setAttribute('aria-pressed',String(cat===categoriaAtual));btn.onclick=()=>{categoriaAtual=cat;renderFilters();render();};return btn}))}
-function render(){const q=normalize(search.value.trim());const lista=produtos.filter(p=>(categoriaAtual==='Todas'||p.categoria===categoriaAtual)&&normalize(p.nome+' '+p.categoria).includes(q));grid.replaceChildren(...lista.map(createCard));count.textContent=lista.length+' '+(lista.length===1?'peça':'peças');empty.hidden=lista.length!==0}
-document.querySelector('#year').textContent=new Date().getFullYear();search.addEventListener('input',render);renderFilters();render();
+function render(){
+  const q=normalize(search.value.trim());
+  const lista=produtos.filter(p=>(categoriaAtual==='Todas'||p.categoria===categoriaAtual)&&normalize([p.id,p.nome,p.categoria].join(' ')).includes(q));
+  grid.replaceChildren(...lista.map(createCard));
+  if(count)count.textContent=lista.length+' '+(lista.length===1?'peça':'peças');
+  empty.hidden=lista.length!==0;
+}
+document.querySelector('#year').textContent=new Date().getFullYear();
+search.addEventListener('input',render);
+renderFilters();render();
