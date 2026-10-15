@@ -5,16 +5,18 @@
    link: URL de afiliada da Shopee (imagem, nome e botão serão clicáveis).
    Os IDs e preços abaixo estão vazios para você preencher com os dados corretos.
 */
-const produtos = [
-  {id:'BYV-WVM-GKH',preco:'R$274,50',nome:'Vestido Longo Tomara Que Caia com Fenda',categoria:'Vestidos',imagem:'/assets/vestidos/vestido-vermelho-elegante-cetim.jpeg',link:'https://s.shopee.com.br/3B8Bf8uCDf'},
-  {id:'BFZ-SEW-MDG',preco:'R$280,60',nome:'Vestido Longo com Alças com Fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-verde-elegante-cetim-tomara-que-caia.jpeg',link:'https://s.shopee.com.br/4fwzS6EMne'},
-  {id:'BTG-BTZ-TZM',preco:'R$166,54',nome:'Vestido de cetim de um ombro com fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-um-ombro-roxo.jpeg',link:'https://s.shopee.com.br/70KuEnQFkN'},
-  {id:'BGM-QUC-DAS',preco:'R$95,00',nome:'Vestido Longo Forrado Estampa Florida',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-estampado.jpeg',link:'https://s.shopee.com.br/60SN345Il6'},
-  {id:'AFE-LUM-QZA',preco:'R$76,44',nome:'Vestido de cetim sem mangas',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-cetim.jpeg',link:'https://s.shopee.com.br/50ZprTTNZb'},
-  {id:'AWD-JEB-REJ',preco:'R$265,50',nome:'Vestido Longo Decote Drapeado Fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-marrom-elegante-cetim.jpeg',link:'https://s.shopee.com.br/6VOdeT4LDR'},
-  {id:'BLS-KQA-ZPS',preco:'R$190,15',nome:'Vestido estampado manga lanterna',categoria:'Vestidos',imagem:'assets/vestidos/vestido-manga-bufante-estampado.jpeg',link:'https://s.shopee.com.br/60SN3iO8Tb'},
-  {id:'AWD-JEB-QBS',preco:'R$157,74',nome:'Vestido longo em malha fria + Faixa',categoria:'Vestidos',imagem:'assets/vestidos/vestido-lenco-pescoco-serenity.jpeg',link:'https://s.shopee.com.br/905ydPd8cs'},
-];
+
+import { produtos as produtosOriginais } from './produtos.js';
+
+const produtos = produtosOriginais.map(p => ({
+  id: String(p.id || '').trim(),
+  preco: String(p.preco || '').trim(),
+  nome: String(p.nome || '').trim(),
+  categoria: String(p.categoria || '').trim(),
+  imagem: String(p.imagem || '').trim(),
+  link: String(p.link || '').trim(),
+  selo: String(p.selo || '').trim()
+}));
 const grid=document.querySelector('#products');
 const filters=document.querySelector('#filters');
 const search=document.querySelector('#searchInput');
