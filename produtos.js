@@ -32,4 +32,7 @@ export const produtos = [
   {id:'BWY-YAZ-BRY',preco:'R$108,99',nome:'Conjunto Alfaiataria Saia Envelope + Cropped',categoria:'Conjuntos',imagem:'assets/vestidos/conjunto-saia-branco.jpeg',link:'https://s.shopee.com.br/3qNu234nGn'},
   {id:'CKD-CCY-MQE',preco:'R$109,00',nome:'Conjunto Tricot Saia Godê e Blusa Manga',categoria:'Conjuntos',imagem:'assets/vestidos/conjunto-rosa-saia.jpeg',link:'https://s.shopee.com.br/1BBT6PpcT'},
   {id:'AYM-XCB-EBE',preco:'R$89,40',nome:'Conjunto Linho Blusa Transpassada e Calça',categoria:'Conjuntos',imagem:'assets/vestidos/conjunto-calca-bege.jpeg',link:'https://s.shopee.com.br/3LRdRWwbBd'},
+  {id:'BDR-DHL-WHR',preco:'R$59,79',nome:'Vestido Mid Elastex nas Costas',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-poa.jpeg',link:'https://s.shopee.com.br/4fx1SWr3GX'},
+
+  {id:'CCC-NSR-HFC',preco:'R$119,00',nome:'Vestido Longo Justo Tomara que Caia',categoria:'Vestidos',imagem:'assets/vestidos/vestido-vermelho-sereia.jpeg',link:'https://s.shopee.com.br/1BN9IFMbKT'},
 ]
