@@ -35,4 +35,7 @@ export const produtos = [
   {id:'BDR-DHL-WHR',preco:'R$59,79',nome:'Vestido Mid Elastex nas Costas',categoria:'Vestidos',imagem:'assets/vestidos/vestido-preto-poa.jpeg',link:'https://s.shopee.com.br/4fx1SWr3GX'},
 
   {id:'CCC-NSR-HFC',preco:'R$119,00',nome:'Vestido Longo Justo Tomara que Caia',categoria:'Vestidos',imagem:'assets/vestidos/vestido-vermelho-sereia.jpeg',link:'https://s.shopee.com.br/1BN9IFMbKT'},
+  {id:'CJS-PHD-GKD',preco:'R$179,90 - R$189,00',nome:'Vestido Longo Com Echarpe',categoria:'Vestidos',imagem:'assets/vestidos/vestido-vermelho-echarpe-soltinho.jpg',link:'https://s.shopee.com.br/9fLj6noirU'},
+  {id:'ASX-TQR-KWC',preco:'R$89,99',nome:'Vestido Longo Tomara Que Caia No Tule',categoria:'Vestidos',imagem:'assets/vestidos/vestido-manchado-tubinho-mid.jpg',link:'https://s.shopee.com.br/9Kisi7nHBh'},
+  {id:'AGQ-NHL-JVZ',preco:'R$249,99',nome:'Vestido Elegante Com Fenda',categoria:'Vestidos',imagem:'assets/vestidos/vestido-elegante-preto-fenda-manga-babado.jpg',link:'https://s.shopee.com.br/4B0mYYMAGY'},
 ]
